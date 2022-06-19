@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pages.MainActivity">
+    tools:context=".pages.SignupActivity">
 
     <ScrollView
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,36 +21,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:text="@string/welcome"
-                android:textSize="10pt"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email"
+                    android:background="#FFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10pt"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/enter_email" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:textSize="8pt"
-                android:text="@string/main_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSignin"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_marginTop="20dp"
-                android:textSize="8pt"
-                android:text="@string/start_session"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:background="#FFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10pt"
+                    android:hint="@string/enter_new_password" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSignup"
+                android:layout_marginTop="20dp"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:textSize="8pt"
-                android:text="@string/create_account"
+                android:text="@string/accept"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
+
 
     </ScrollView>
 
