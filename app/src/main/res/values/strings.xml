@@ -10,6 +10,9 @@
     <string name="accept">Aceptar</string>
     <string name="enter_email">Ingresa tu email</string>
     <string name="enter_new_password">Crea una contraseña</string>
+    <string name="missed_email">Ingresa un email válido</string>
+    <string name="missed_password">Ingresa una contraseña con mínimo 8 caracteres</string>
+    <string name="signup_recovery_message">Este correo ya ha sido usado. Intente iniciar sesión o recuperar su cuenta</string>
     <string name="signup_recomendations">
         Recuerda bien tu email y contraseña.
         En caso de desinstalación de la app, destrozo, perdida, o robo de tu celular,
