@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "681189539080",
+    "project_id": "mi-mercado-cl",
+    "storage_bucket": "mi-mercado-cl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681189539080:android:68724f1e66ada607b5c0bd",
+        "android_client_info": {
+          "package_name": "cl.mi.mercado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681189539080-1ajr0l9fvl7m69oldo7stn17tugidnvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZllMtLKsC83IaCZBUVNUwEyHKEf-4SlI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681189539080-1ajr0l9fvl7m69oldo7stn17tugidnvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
