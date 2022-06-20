@@ -13,10 +13,12 @@
     <string name="missed_email">Ingresa un email válido</string>
     <string name="missed_password">Ingresa una contraseña con mínimo 8 caracteres</string>
     <string name="signup_recovery_message">Este correo ya ha sido usado. Intente iniciar sesión o recuperar su cuenta</string>
-    <string name="signup_recomendations">
-        Recuerda bien tu email y contraseña.
-        En caso de desinstalación de la app, destrozo, perdida, o robo de tu celular,
-        podrás ingresar a tu información desde cualquier otro telefono Android o iPhone
-        y seguir utilizando la aplicación sin problemas.
-    </string>
+    <string name="aditional_data">Datos adicionales</string>
+    <string name="firstname">Nombre</string>
+    <string name="lastname">Apellido</string>
+    <string name="storename">Nombre de la tienda</string>
+    <string name="missed_firstname">Debes ingresar tu nombre</string>
+    <string name="missed_lastname">Debes ingresar tu apellido</string>
+    <string name="missed_storename">Debes ingresar el nombre de la tienda</string>
+    <string name="unknown_error">Ha ocurrido un error desconocido</string>
 </resources>

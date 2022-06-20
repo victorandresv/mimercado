@@ -1,10 +1,10 @@
 package cl.mi.mercado.pages;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,11 +20,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         context = this;
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-
+            finish();
+            if(currentUser.getDisplayName().equals("")){
+                startActivity(new Intent(context, SignupAditionalDataActivity.class));
+            } else {
+                startActivity(new Intent(context, HomeActivity.class));
+            }
         } else {
             setContentView(R.layout.activity_main);
 
