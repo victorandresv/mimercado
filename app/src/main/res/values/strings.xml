@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Mi Mercado</string>
 
     <string name="welcome">Bienvenido</string>
@@ -21,4 +21,9 @@
     <string name="missed_lastname">Debes ingresar tu apellido</string>
     <string name="missed_storename">Debes ingresar el nombre de la tienda</string>
     <string name="unknown_error">Ha ocurrido un error desconocido</string>
+    <string name="home">Inicio</string>
+    <string name="new_sell">Nueva venta</string>
+    <string name="stock">Mis productos</string>
+    <string name="cart_empty_message">Aun no hay productos agregados. Presiona el boton para escanear codigo de barra.</string>
+    <string name="state_account">Estado de cuenta</string>
 </resources>

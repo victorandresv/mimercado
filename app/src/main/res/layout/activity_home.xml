@@ -7,4 +7,39 @@
     android:layout_height="match_parent"
     tools:context=".pages.HomeActivity">
 
+    <ScrollView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNewSell"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_marginTop="20dp"
+                android:textSize="8pt"
+                android:text="@string/new_sell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnProducts"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textSize="8pt"
+                android:text="@string/stock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
