@@ -11,7 +11,11 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_signup_aditional_data.xml" value="0.1339918946301925" />
+        <entry key="app/src/main/res/layout/activity_tabs.xml" value="0.18432971014492755" />
         <entry key="app/src/main/res/layout/dialog_product_to_cart.xml" value="0.151268115942029" />
+        <entry key="app/src/main/res/layout/fragment_products.xml" value="0.18432971014492755" />
+        <entry key="app/src/main/res/layout/fragment_sales.xml" value="0.18432971014492755" />
+        <entry key="app/src/main/res/layout/fragment_tabs.xml" value="0.18432971014492755" />
       </map>
     </option>
   </component>
