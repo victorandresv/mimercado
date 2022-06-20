@@ -8,10 +8,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
@@ -28,8 +25,8 @@ import cl.mi.mercado.models.ProductModel;
 
 public class CartActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
     private Context context;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +34,9 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         context = this;
-        mAuth = FirebaseAuth.getInstance();
+
+        db = FirebaseFirestore.getInstance();
+        db.disableNetwork();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -64,7 +63,7 @@ public class CartActivity extends AppCompatActivity {
         data.put("quantity", cart.getQuantity());
         data.put("sku", cart.getSku());
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
         if(SessionHelper.getData(context, "MarketId").equals("")){
             SessionHelper.addData(context, "MarketId", "p3kHSmxekZF5WKCOvJbM");
@@ -78,17 +77,14 @@ public class CartActivity extends AppCompatActivity {
                     .document(SessionHelper.getData(context, "MarketId"))
                     .collection("sales")
                     .add(sale)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            SessionHelper.addData(context, "SaleId", documentReference.getId());
-                            db.collection("markets")
-                                    .document(SessionHelper.getData(context, "MarketId"))
-                                    .collection("sales")
-                                    .document(SessionHelper.getData(context, "SaleId"))
-                                    .collection("products")
-                                    .add(data);
-                        }
+                    .addOnSuccessListener(documentReference -> {
+                        SessionHelper.addData(context, "SaleId", documentReference.getId());
+                        db.collection("markets")
+                                .document(SessionHelper.getData(context, "MarketId"))
+                                .collection("sales")
+                                .document(SessionHelper.getData(context, "SaleId"))
+                                .collection("products")
+                                .add(data);
                     })
                     .addOnFailureListener(e -> DialogsHelper.Alert(context, "Error", e.getMessage()));
 
