@@ -1,20 +1,28 @@
 
 package cl.mi.mercado.pages;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
-
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import cl.mi.mercado.R;
 import cl.mi.mercado.helpers.DialogsHelper;
+import cl.mi.mercado.helpers.SessionHelper;
 import cl.mi.mercado.interfaces.AddProductToCart;
 import cl.mi.mercado.models.ProductModel;
 
@@ -38,15 +46,60 @@ public class CartActivity extends AppCompatActivity {
 
         findViewById(R.id.btnScan).setOnClickListener(view -> {
             //barcodeLauncher.launch(new ScanOptions());
-
             DialogsHelper.ProductToCart(this, new ProductModel("Producto", "000000000000", "1k", 1500), new AddProductToCart() {
                 @Override
                 public void Add(ProductModel data) {
-                    Log.e("DATA", data.toString());
+                    addItemToCart(data);
                 }
             });
         });
 
+    }
+
+    private void addItemToCart(ProductModel cart){
+        Map<String, Object> data = new HashMap<>();
+        data.put("name", cart.getName());
+        data.put("measure", cart.getMeasure());
+        data.put("price", cart.getPrice());
+        data.put("quantity", cart.getQuantity());
+        data.put("sku", cart.getSku());
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        if(SessionHelper.getData(context, "MarketId").equals("")){
+            SessionHelper.addData(context, "MarketId", "p3kHSmxekZF5WKCOvJbM");
+        }
+        if(SessionHelper.getData(context, "SaleId").equals("")){
+            Map<String, Object> sale = new HashMap<>();
+            sale.put("created_at", new Timestamp(new Date()));
+            sale.put("status", "DRAFT");
+            sale.put("client", "Pepe");
+            db.collection("markets")
+                    .document(SessionHelper.getData(context, "MarketId"))
+                    .collection("sales")
+                    .add(sale)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            SessionHelper.addData(context, "SaleId", documentReference.getId());
+                            db.collection("markets")
+                                    .document(SessionHelper.getData(context, "MarketId"))
+                                    .collection("sales")
+                                    .document(SessionHelper.getData(context, "SaleId"))
+                                    .collection("products")
+                                    .add(data);
+                        }
+                    })
+                    .addOnFailureListener(e -> DialogsHelper.Alert(context, "Error", e.getMessage()));
+
+        } else {
+            db.collection("markets")
+                    .document(SessionHelper.getData(context, "MarketId"))
+                    .collection("sales")
+                    .document(SessionHelper.getData(context, "SaleId"))
+                    .collection("products")
+                    .add(data);
+        }
     }
 
     private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
