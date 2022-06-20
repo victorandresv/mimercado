@@ -26,4 +26,10 @@
     <string name="stock">Mis productos</string>
     <string name="cart_empty_message">Aun no hay productos agregados. Presiona el boton para escanear codigo de barra.</string>
     <string name="state_account">Estado de cuenta</string>
+    <string name="quantity">Cantidad</string>
+    <string name="code">Código</string>
+    <string name="measure">Medida</string>
+    <string name="unit_price">Precio unitario</string>
+    <string name="add_to_list">Agregar al listado</string>
+    <string name="cancel">Cancelar</string>
 </resources>

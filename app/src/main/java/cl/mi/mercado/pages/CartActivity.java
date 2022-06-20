@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -13,6 +14,9 @@ import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
 import cl.mi.mercado.R;
+import cl.mi.mercado.helpers.DialogsHelper;
+import cl.mi.mercado.interfaces.AddProductToCart;
+import cl.mi.mercado.models.ProductModel;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -33,7 +37,14 @@ public class CartActivity extends AppCompatActivity {
         getSupportActionBar().setSubtitle(getResources().getString(R.string.state_account));
 
         findViewById(R.id.btnScan).setOnClickListener(view -> {
-            barcodeLauncher.launch(new ScanOptions());
+            //barcodeLauncher.launch(new ScanOptions());
+
+            DialogsHelper.ProductToCart(this, new ProductModel("Producto", "000000000000", "1k", 1500), new AddProductToCart() {
+                @Override
+                public void Add(ProductModel data) {
+                    Log.e("DATA", data.toString());
+                }
+            });
         });
 
     }
