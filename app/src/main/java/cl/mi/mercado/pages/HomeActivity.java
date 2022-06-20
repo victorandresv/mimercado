@@ -1,6 +1,5 @@
 package cl.mi.mercado.pages;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,14 +15,10 @@ import cl.mi.mercado.fragments.SalesFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Context context;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        context = this;
 
         getSupportActionBar().setSubtitle(getResources().getString(R.string.home));
 
@@ -47,6 +42,5 @@ public class HomeActivity extends AppCompatActivity {
                 }
         ).attach();
 
-        //findViewById(R.id.btnNewSell).setOnClickListener(view -> startActivity(new Intent(context, CartActivity.class)));
     }
 }
