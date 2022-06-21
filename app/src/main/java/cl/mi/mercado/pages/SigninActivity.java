@@ -50,6 +50,7 @@ public class SigninActivity extends AppCompatActivity {
                             @Override
                             public void Ok(MarketModel data) {
                                 SessionHelper.addData(context, "MarketId", data.getId());
+                                SessionHelper.addData(context, "Storename", data.getStorename());
                                 finishAffinity();
                                 startActivity(new Intent(context, HomeActivity.class));
                             }
