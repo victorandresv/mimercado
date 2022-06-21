@@ -40,7 +40,7 @@ public class SignupActivity extends AppCompatActivity {
                             email.getText().toString(),
                             password.getText().toString()
                     ).addOnSuccessListener(authResult -> {
-
+                        //TODO GRABAR EN SESION EL MARKET ID
                     }).addOnFailureListener(e -> {
                         switch(e.getMessage()){
                             case "The email address is already in use by another account.":
@@ -71,6 +71,5 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
     }
 }

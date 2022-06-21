@@ -3,6 +3,7 @@ package cl.mi.mercado.pages;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,7 +12,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import cl.mi.mercado.R;
 import cl.mi.mercado.helpers.DialogsHelper;
+import cl.mi.mercado.helpers.FirestoreHelper;
 import cl.mi.mercado.helpers.SessionHelper;
+import cl.mi.mercado.interfaces.FirestoreSingleStore;
+import cl.mi.mercado.models.MarketModel;
 
 public class SigninActivity extends AppCompatActivity {
 
@@ -41,8 +45,21 @@ public class SigninActivity extends AppCompatActivity {
                             email.getText().toString(),
                             password.getText().toString()
                     ).addOnSuccessListener(authResult -> {
-                        //TODO GRABAR EN SESION EL MARKET ID
-                        SessionHelper.addData(context, "MarketId", "p3kHSmxekZF5WKCOvJbM");
+
+                        FirestoreHelper.GetStoreByEmail(email.getText().toString(), new FirestoreSingleStore() {
+                            @Override
+                            public void Ok(MarketModel data) {
+                                SessionHelper.addData(context, "MarketId", data.getId());
+                                finishAffinity();
+                                startActivity(new Intent(context, HomeActivity.class));
+                            }
+
+                            @Override
+                            public void Error(Exception e) {
+                                DialogsHelper.Alert(context, "Error", e.getMessage());
+                            }
+                        });
+
                     }).addOnFailureListener(e -> {
                         switch(e.getMessage()){
                             case "There is no user record corresponding to this identifier. The user may have been deleted.":
