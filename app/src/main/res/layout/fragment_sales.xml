@@ -6,13 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".fragments.SalesFragment">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnNewSell"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_marginTop="20dp"
-        android:textSize="8pt"
-        android:text="@string/new_sale"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNewSell"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_marginTop="20dp"
+            android:textSize="8pt"
+            android:text="@string/new_sale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </FrameLayout>
