@@ -44,7 +44,7 @@ public class SignupActivity extends AppCompatActivity {
 
                     }).addOnFailureListener(e -> {
                         switch(e.getMessage()){
-                            case "The email address is already in use by another account":
+                            case "The email address is already in use by another account.":
                                 DialogsHelper.Alert(context, "Error", getResources().getText(R.string.signup_recovery_message).toString());
                                 break;
                             default:
