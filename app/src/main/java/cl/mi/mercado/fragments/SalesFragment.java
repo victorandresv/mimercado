@@ -39,7 +39,7 @@ public class SalesFragment extends Fragment {
         ArrayList<SaleModel> list = new ArrayList<>();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.enableNetwork();
+        db.disableNetwork();
 
         RecyclerView recyclerView = view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
