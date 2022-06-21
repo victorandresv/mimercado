@@ -3,7 +3,6 @@ package cl.mi.mercado.pages;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
