@@ -11,7 +11,7 @@ public class FirestoreHelper {
 
     public static void GetStoreByEmail(String email, FirestoreSingleStore cb){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("markets")
+        db.enableNetwork().addOnSuccessListener(unused -> db.collection("markets")
                 .whereEqualTo("email", email)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -24,13 +24,12 @@ public class FirestoreHelper {
                             data.setLastname(item.getData().get("lastname").toString());
                             data.setCreated_at((Timestamp) item.getData().get("created_at"));
                             data.setPlan(item.getData().get("plan").toString());
-                            data.setPlan_from((Timestamp) item.getData().get("plan_start_date"));
                             data.setStorename(item.getData().get("storename").toString());
-                            data.setPlan_to((Timestamp) item.getData().get("plan_end_date"));
                         } catch (Exception ignored){}
                     }
                     cb.Ok(data);
                 })
-                .addOnFailureListener(cb::Error);
+                .addOnFailureListener(cb::Error));
+
     }
 }

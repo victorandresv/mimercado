@@ -1,6 +1,7 @@
 package cl.mi.mercado.pages;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -40,7 +41,8 @@ public class SignupActivity extends AppCompatActivity {
                             email.getText().toString(),
                             password.getText().toString()
                     ).addOnSuccessListener(authResult -> {
-                        //TODO GRABAR EN SESION EL MARKET ID
+                        finish();
+                        startActivity(new Intent(context, SignupAditionalDataActivity.class));
                     }).addOnFailureListener(e -> {
                         switch(e.getMessage()){
                             case "The email address is already in use by another account.":

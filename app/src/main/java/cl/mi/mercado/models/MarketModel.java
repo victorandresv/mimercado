@@ -10,8 +10,6 @@ public class MarketModel {
     private String firstname;
     private String lastname;
     private String plan;
-    private Timestamp plan_from;
-    private Timestamp plan_to;
     private String storename;
 
     public void setId(String id) {
@@ -26,13 +24,6 @@ public class MarketModel {
         this.storename = storename;
     }
 
-    public void setPlan_to(Timestamp plan_to) {
-        this.plan_to = plan_to;
-    }
-
-    public void setPlan_from(Timestamp plan_from) {
-        this.plan_from = plan_from;
-    }
 
     public void setPlan(String plan) {
         this.plan = plan;
@@ -54,13 +45,6 @@ public class MarketModel {
         this.created_at = created_at;
     }
 
-    public Timestamp getPlan_to() {
-        return plan_to;
-    }
-
-    public Timestamp getPlan_from() {
-        return plan_from;
-    }
 
     public Timestamp getCreated_at() {
         return created_at;
@@ -94,8 +78,6 @@ public class MarketModel {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", plan='" + plan + '\'' +
-                ", plan_from=" + plan_from +
-                ", plan_to=" + plan_to +
                 ", storename='" + storename + '\'' +
                 '}';
     }

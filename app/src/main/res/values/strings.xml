@@ -36,4 +36,6 @@
     <string name="add_to_list">Agregar al listado</string>
     <string name="cancel">Cancelar</string>
     <string name="new_sale">Nueva venta</string>
+    <string name="error_fatal_missed_data">No se han encontrado los datos de la tienda. Tendrá que crear sus datos nuevamente.</string>
+    <string name="error_recovery">La aplicación se ha recuperado después de un error desconocido. Inicie la app nuevamente.</string>
 </resources>

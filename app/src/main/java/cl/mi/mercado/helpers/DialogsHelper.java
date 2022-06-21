@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import cl.mi.mercado.R;
 import cl.mi.mercado.interfaces.AddProductToCart;
+import cl.mi.mercado.interfaces.SingleCallback;
 import cl.mi.mercado.models.ProductModel;
 
 public class DialogsHelper {
@@ -21,6 +22,19 @@ public class DialogsHelper {
         alert.setPositiveButton(context.getResources().getString(R.string.accept), (dialog, which) -> dialog.cancel());
         alert.create();
         alert.show();
+    }
+
+    public static void Alert(Context context, String title, String message, SingleCallback cb){
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle(title);
+        alert.setMessage(message);
+        alert.setPositiveButton(context.getResources().getString(R.string.accept), (dialog, which) -> {
+            cb.Ok();
+            dialog.cancel();
+        });
+        alert.create();
+        alert.show();
+
     }
 
     public static void ProductToCart(Activity activity, ProductModel data, AddProductToCart call){

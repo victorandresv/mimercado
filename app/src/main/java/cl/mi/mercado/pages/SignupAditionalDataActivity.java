@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,7 +22,11 @@ import java.util.Map;
 
 import cl.mi.mercado.R;
 import cl.mi.mercado.helpers.DialogsHelper;
+import cl.mi.mercado.helpers.FirestoreHelper;
+import cl.mi.mercado.helpers.SessionHelper;
+import cl.mi.mercado.interfaces.FirestoreSingleStore;
 import cl.mi.mercado.interfaces.SignupFirestoreCallback;
+import cl.mi.mercado.models.MarketModel;
 
 public class SignupAditionalDataActivity extends AppCompatActivity {
 
@@ -59,6 +64,8 @@ public class SignupAditionalDataActivity extends AppCompatActivity {
                                     try {
                                         currentUser.updateProfile(upcr.build())
                                                 .addOnCompleteListener(task -> {
+                                                    SessionHelper.addData(context, "MarketId", currentUser.getEmail());
+                                                    SessionHelper.addData(context, "Storename", storename.getText().toString());
                                                     finish();
                                                     startActivity(new Intent(context, HomeActivity.class));
                                                 });
@@ -84,36 +91,41 @@ public class SignupAditionalDataActivity extends AppCompatActivity {
 
     private void updateOrCreateData(String email, String firstname, String lastname, String storename, SignupFirestoreCallback cb){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.enableNetwork().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Map<String, Object> data = new HashMap<>();
+                data.put("email", email);
+                data.put("firstname", firstname);
+                data.put("lastname", lastname);
+                data.put("storename", storename);
+                data.put("plan", "Free");
 
-        Map<String, Object> data = new HashMap<>();
-        data.put("email", email);
-        data.put("firstname", firstname);
-        data.put("lastname", lastname);
-        data.put("storename", storename);
-
-        db.collection("markets")
-                .whereEqualTo("email", email)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        int count = 0;
-                        String documentId = "";
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            documentId = document.getId();
-                            count++;
-                        }
-                        data.put("created_at", new Timestamp(new Date()));
-                        if(count > 0){
-                            // Update market
-                            db.collection("markets").document(documentId).set(data);
-                        } else {
-                            // Create market
-                            db.collection("markets").add(data);
-                        }
-                        cb.Ok();
-                    } else {
-                        DialogsHelper.Alert(context, "Error", getResources().getString(R.string.unknown_error));
-                    }
-                }).addOnFailureListener(err -> DialogsHelper.Alert(context, "Error", err.getMessage()));
+                db.collection("markets")
+                        .whereEqualTo("email", email)
+                        .get()
+                        .addOnCompleteListener(task -> {
+                            if(task.isSuccessful()){
+                                int count = 0;
+                                String documentId = "";
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    documentId = document.getId();
+                                    count++;
+                                }
+                                data.put("created_at", Timestamp.now());
+                                if(count > 0){
+                                    // Update market
+                                    db.collection("markets").document(documentId).set(data);
+                                } else {
+                                    // Create market
+                                    db.collection("markets").add(data);
+                                }
+                                cb.Ok();
+                            } else {
+                                DialogsHelper.Alert(context, "Error", getResources().getString(R.string.unknown_error));
+                            }
+                        }).addOnFailureListener(err -> DialogsHelper.Alert(context, "Error", err.getMessage()));
+            }
+        });
     }
 }
