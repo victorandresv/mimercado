@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MiMercado"
         tools:targetApi="31">
         <activity
+            android:name=".pages.SigninActivity"
+            android:exported="false" />
+        <activity
             android:name=".pages.CartActivity"
             android:exported="false" />
         <activity

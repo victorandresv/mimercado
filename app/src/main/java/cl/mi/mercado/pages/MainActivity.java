@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         context = this;
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -37,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
             findViewById(R.id.btnSignup).setOnClickListener(view -> {
                 startActivity(new Intent(context, SignupActivity.class));
+            });
+
+            findViewById(R.id.btnSignin).setOnClickListener(view -> {
+                startActivity(new Intent(context, SigninActivity.class));
             });
         }
     }
