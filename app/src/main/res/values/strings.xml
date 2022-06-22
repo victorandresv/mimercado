@@ -38,4 +38,10 @@
     <string name="new_sale">Nueva venta</string>
     <string name="error_fatal_missed_data">No se han encontrado los datos de la tienda. Tendrá que crear sus datos nuevamente.</string>
     <string name="error_recovery">La aplicación se ha recuperado después de un error desconocido. Inicie la app nuevamente.</string>
+    <string name="create_new_product">Crear nuevo producto</string>
+    <string name="product_name">Nombre del producto</string>
+    <string name="product_measure">Medida (kg, litro, mg, etc)</string>
+    <string name="product_price_buy">Precio de compra</string>
+    <string name="product_price_sell">Precio de venta</string>
+    <string name="create_product">Crear producto</string>
 </resources>

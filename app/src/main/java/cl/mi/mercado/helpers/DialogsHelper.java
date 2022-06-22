@@ -81,4 +81,17 @@ public class DialogsHelper {
         });
     }
 
+    public static void ProductCreate(Activity activity){
+        LayoutInflater inflater = activity.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_product_create, null);
+
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.setNegativeButton(activity.getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
+        dialogBuilder.setTitle(activity.getResources().getString(R.string.create_new_product));
+        dialogBuilder.create();
+        AlertDialog dialog = dialogBuilder.show();
+    }
+
 }

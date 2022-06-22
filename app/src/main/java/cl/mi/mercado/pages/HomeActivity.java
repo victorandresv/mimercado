@@ -12,6 +12,7 @@ import cl.mi.mercado.R;
 import cl.mi.mercado.adapters.HomeFragmentStateAdapter;
 import cl.mi.mercado.fragments.ProductsFragment;
 import cl.mi.mercado.fragments.SalesFragment;
+import cl.mi.mercado.helpers.DialogsHelper;
 import cl.mi.mercado.helpers.SessionHelper;
 
 public class HomeActivity extends AppCompatActivity {
@@ -20,6 +21,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        DialogsHelper.ProductCreate(this);
 
         this.setTitle(SessionHelper.getData(this, "Storename"));
         getSupportActionBar().setSubtitle(getResources().getString(R.string.home));
