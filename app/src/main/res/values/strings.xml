@@ -44,4 +44,5 @@
     <string name="product_price_buy">Precio de compra</string>
     <string name="product_price_sell">Precio de venta</string>
     <string name="create_product">Crear producto</string>
+    <string name="product_quantity">Unidades compradas</string>
 </resources>

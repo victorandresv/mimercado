@@ -2,6 +2,6 @@ package cl.mi.mercado.interfaces;
 
 import cl.mi.mercado.models.ProductModel;
 
-public interface AddProductToCart {
+public interface ProductCallback {
     void Add(ProductModel data);
 }

@@ -20,7 +20,7 @@ import java.util.Map;
 import cl.mi.mercado.R;
 import cl.mi.mercado.helpers.DialogsHelper;
 import cl.mi.mercado.helpers.SessionHelper;
-import cl.mi.mercado.interfaces.AddProductToCart;
+import cl.mi.mercado.interfaces.ProductCallback;
 import cl.mi.mercado.models.ProductModel;
 
 public class CartActivity extends AppCompatActivity {
@@ -45,7 +45,7 @@ public class CartActivity extends AppCompatActivity {
 
         findViewById(R.id.btnScan).setOnClickListener(view -> {
             //barcodeLauncher.launch(new ScanOptions());
-            DialogsHelper.ProductToCart(this, new ProductModel("Producto", "000000000000", "1k", 1500), new AddProductToCart() {
+            DialogsHelper.ProductToCart(this, new ProductModel("Producto", "000000000000", "1k", 1500), new ProductCallback() {
                 @Override
                 public void Add(ProductModel data) {
                     addItemToCart(data);

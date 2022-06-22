@@ -5,6 +5,7 @@ public class ProductModel {
     private String sku;
     private String measure;
     private double price;
+    private double price_buy;
     private int quantity;
 
     public ProductModel(String name,String sku,String measure,double price){
@@ -12,6 +13,19 @@ public class ProductModel {
         this.sku = sku;
         this.measure = measure;
         this.price = price;
+    }
+
+    public ProductModel(String name,String sku,String measure,double price, double price_buy, int quantity){
+        this.name = name;
+        this.sku = sku;
+        this.measure = measure;
+        this.price = price;
+        this.price_buy = price_buy;
+        this.quantity = quantity;
+    }
+
+    public double getPrice_buy() {
+        return price_buy;
     }
 
     public int getQuantity() {
@@ -45,6 +59,7 @@ public class ProductModel {
                 ", sku='" + sku + '\'' +
                 ", measure='" + measure + '\'' +
                 ", price=" + price +
+                ", price_buy=" + price_buy +
                 ", quantity=" + quantity +
                 '}';
     }
