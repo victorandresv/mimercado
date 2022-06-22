@@ -1,7 +1,6 @@
 package cl.mi.mercado.pages;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -13,10 +12,7 @@ import cl.mi.mercado.R;
 import cl.mi.mercado.adapters.HomeFragmentStateAdapter;
 import cl.mi.mercado.fragments.ProductsFragment;
 import cl.mi.mercado.fragments.SalesFragment;
-import cl.mi.mercado.helpers.DialogsHelper;
 import cl.mi.mercado.helpers.SessionHelper;
-import cl.mi.mercado.interfaces.ProductCallback;
-import cl.mi.mercado.models.ProductModel;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -24,13 +20,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        DialogsHelper.ProductCreate(this, new ProductCallback() {
-            @Override
-            public void Add(ProductModel data) {
-                Log.e("ERR", data.toString());
-            }
-        });
 
         this.setTitle(SessionHelper.getData(this, "Storename"));
         getSupportActionBar().setSubtitle(getResources().getString(R.string.home));

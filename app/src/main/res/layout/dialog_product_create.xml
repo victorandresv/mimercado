@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:paddingTop="10dp"
             android:layout_margin="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnScan"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_marginBottom="20dp"
+                android:text="@string/scan_barcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <TextView
-                    android:paddingEnd="10dp"
-                    android:text="@string/code"
-                    android:textStyle="bold"
-                    android:textSize="8pt"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:text="0000000000000"
-                    android:textSize="8pt"
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/sku"
+                    android:background="#FFF"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:inputType="number"
+                    android:hint="@string/code" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -114,15 +112,6 @@
                     android:hint="@string/product_price_sell" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnAdd"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_marginTop="20dp"
-                android:text="@string/create_product"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

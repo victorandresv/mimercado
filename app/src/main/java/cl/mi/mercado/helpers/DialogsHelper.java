@@ -7,6 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.journeyapps.barcodescanner.DecoratedBarcodeView;
+import com.journeyapps.barcodescanner.DefaultDecoderFactory;
+import com.journeyapps.barcodescanner.ScanOptions;
+
 import cl.mi.mercado.R;
 import cl.mi.mercado.interfaces.ProductCallback;
 import cl.mi.mercado.interfaces.SingleCallback;
@@ -93,13 +97,8 @@ public class DialogsHelper {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
         dialogBuilder.setView(dialogView);
-        dialogBuilder.setNegativeButton(activity.getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
-        dialogBuilder.setTitle(activity.getResources().getString(R.string.create_new_product));
-        dialogBuilder.create();
-        AlertDialog dialog = dialogBuilder.show();
-
-        dialogView.findViewById(R.id.btnAdd).setOnClickListener(view -> {
-            dialog.dismiss();
+        dialogBuilder.setNegativeButton(activity.getResources().getString(R.string.create_product), (dialogInterface, i) -> {
+            dialogInterface.dismiss();
             ProductModel product = new ProductModel(
                     name.getText().toString(),
                     sku.getText().toString(),
@@ -110,6 +109,19 @@ public class DialogsHelper {
             );
             call.Add(product);
         });
+        dialogBuilder.setPositiveButton(activity.getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
+        dialogBuilder.setTitle(activity.getResources().getString(R.string.create_new_product));
+        dialogBuilder.create();
+        AlertDialog dialog = dialogBuilder.show();
+
+
+
+        dialogView.findViewById(R.id.btnScan).setOnClickListener(view -> {
+
+        });
+
+
+
     }
 
 }

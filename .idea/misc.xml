@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/barcode_scan.xml" value="0.207" />
         <entry key="app/src/main/res/drawable/minus_circle.xml" value="0.207" />
         <entry key="app/src/main/res/drawable/plus_circle.xml" value="0.12" />
+        <entry key="app/src/main/res/drawable/text_box_plus.xml" value="0.2425" />
         <entry key="app/src/main/res/layout/activity_cart.xml" value="0.151268115942029" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18645833333333334" />
@@ -15,6 +16,7 @@
         <entry key="app/src/main/res/layout/activity_tabs.xml" value="0.18432971014492755" />
         <entry key="app/src/main/res/layout/dialog_product_create.xml" value="0.21603260869565216" />
         <entry key="app/src/main/res/layout/dialog_product_to_cart.xml" value="0.151268115942029" />
+        <entry key="app/src/main/res/layout/fragment_barcode_scan.xml" value="0.21603260869565216" />
         <entry key="app/src/main/res/layout/fragment_products.xml" value="0.18432971014492755" />
         <entry key="app/src/main/res/layout/fragment_sales.xml" value="0.18432971014492755" />
         <entry key="app/src/main/res/layout/fragment_tabs.xml" value="0.18432971014492755" />
