@@ -83,4 +83,16 @@ public class SigninActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
