@@ -9,109 +9,116 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:paddingTop="10dp"
-            android:layout_margin="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnScan"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_marginBottom="20dp"
-                android:text="@string/scan_barcode"
+            <com.journeyapps.barcodescanner.DecoratedBarcodeView
+                android:layout_marginTop="30dp"
+                android:id="@+id/barcode_scanner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="180dp"
+                app:zxing_use_texture_view="false"
+                app:zxing_preview_scaling_strategy="centerCrop"/>
 
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/sku"
-                    android:background="#FFF"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:inputType="number"
-                    android:hint="@string/code" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/name"
-                    android:background="#FFF"
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:inputType="textEmailAddress"
-                    android:hint="@string/product_name" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sku"
+                        android:background="#FFF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:inputType="number"
+                        android:hint="@string/code" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/measure"
-                    android:background="#FFF"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:inputType="text"
-                    android:hint="@string/product_measure" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name"
+                        android:background="#FFF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:inputType="textEmailAddress"
+                        android:hint="@string/product_name" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/quantity"
-                    android:background="#FFF"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:inputType="text"
-                    android:hint="@string/product_quantity" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/measure"
+                        android:background="#FFF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:inputType="text"
+                        android:hint="@string/product_measure" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/price_buy"
-                    android:background="#FFF"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:inputType="numberDecimal"
-                    android:hint="@string/product_price_buy" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/quantity"
+                        android:background="#FFF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:inputType="text"
+                        android:hint="@string/product_quantity" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/price_sell"
-                    android:background="#FFF"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:inputType="numberDecimal"
-                    android:hint="@string/product_price_sell" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/price_buy"
+                        android:background="#FFF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:inputType="numberDecimal"
+                        android:hint="@string/product_price_buy" />
+                </com.google.android.material.textfield.TextInputLayout>
 
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/price_sell"
+                        android:background="#FFF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:inputType="numberDecimal"
+                        android:hint="@string/product_price_sell" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -7,9 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.zxing.ResultPoint;
+import com.journeyapps.barcodescanner.BarcodeCallback;
+import com.journeyapps.barcodescanner.BarcodeResult;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
-import com.journeyapps.barcodescanner.DefaultDecoderFactory;
-import com.journeyapps.barcodescanner.ScanOptions;
+
+import java.util.List;
 
 import cl.mi.mercado.R;
 import cl.mi.mercado.interfaces.ProductCallback;
@@ -115,12 +118,19 @@ public class DialogsHelper {
         AlertDialog dialog = dialogBuilder.show();
 
 
+        DecoratedBarcodeView barcodeView = (DecoratedBarcodeView) dialogView.findViewById(R.id.barcode_scanner);
+        barcodeView.resume();
+        barcodeView.decodeSingle(new BarcodeCallback() {
+            @Override
+            public void barcodeResult(BarcodeResult result) {
+                // Do whatever you want with the result
+            }
 
-        dialogView.findViewById(R.id.btnScan).setOnClickListener(view -> {
-
+            @Override
+            public void possibleResultPoints(List<ResultPoint> resultPoints) {
+                BarcodeCallback.super.possibleResultPoints(resultPoints);
+            }
         });
-
-
 
     }
 
