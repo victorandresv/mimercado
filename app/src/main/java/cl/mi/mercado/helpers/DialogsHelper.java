@@ -3,16 +3,20 @@ package cl.mi.mercado.helpers;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.zxing.ResultPoint;
-import com.journeyapps.barcodescanner.BarcodeCallback;
-import com.journeyapps.barcodescanner.BarcodeResult;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.client.android.BeepManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
+import com.journeyapps.barcodescanner.DefaultDecoderFactory;
+import com.journeyapps.barcodescanner.camera.CameraSettings;
 
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collection;
 
 import cl.mi.mercado.R;
 import cl.mi.mercado.interfaces.ProductCallback;
@@ -117,18 +121,30 @@ public class DialogsHelper {
         dialogBuilder.create();
         AlertDialog dialog = dialogBuilder.show();
 
+        BeepManager beepManager = new BeepManager(activity);
+        final String[] lastStringScanned = {""};
 
         DecoratedBarcodeView barcodeView = (DecoratedBarcodeView) dialogView.findViewById(R.id.barcode_scanner);
+        Collection<BarcodeFormat> formats = Arrays.asList(
+                BarcodeFormat.EAN_8,
+                BarcodeFormat.EAN_13,
+                BarcodeFormat.UPC_A,
+                BarcodeFormat.UPC_E,
+                BarcodeFormat.UPC_EAN_EXTENSION
+        );
+        barcodeView.getBarcodeView().setDecoderFactory(new DefaultDecoderFactory(formats));
         barcodeView.resume();
-        barcodeView.decodeSingle(new BarcodeCallback() {
-            @Override
-            public void barcodeResult(BarcodeResult result) {
-                // Do whatever you want with the result
-            }
-
-            @Override
-            public void possibleResultPoints(List<ResultPoint> resultPoints) {
-                BarcodeCallback.super.possibleResultPoints(resultPoints);
+        barcodeView.decodeContinuous(result -> {
+            if(!lastStringScanned[0].equals(result.getText())){
+                barcodeView.pause();
+                beepManager.playBeepSound().setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        lastStringScanned[0] = result.getText();
+                        sku.setText(result.getText());
+                        barcodeView.resume();
+                    }
+                });
             }
         });
 
