@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import cl.mi.mercado.R;
 import cl.mi.mercado.helpers.DialogsHelper;
-import cl.mi.mercado.helpers.FirestoreHelper;
+import cl.mi.mercado.helpers.FirestoreOnlineHelper;
 import cl.mi.mercado.helpers.SessionHelper;
 import cl.mi.mercado.interfaces.FirestoreSingleStore;
 import cl.mi.mercado.models.MarketModel;
@@ -46,7 +46,7 @@ public class SigninActivity extends AppCompatActivity {
                             password.getText().toString()
                     ).addOnSuccessListener(authResult -> {
 
-                        FirestoreHelper.GetStoreByEmail(email.getText().toString(), new FirestoreSingleStore() {
+                        FirestoreOnlineHelper.GetStoreByEmail(email.getText().toString(), new FirestoreSingleStore() {
                             @Override
                             public void Ok(MarketModel data) {
                                 SessionHelper.addData(context, "MarketId", data.getId());

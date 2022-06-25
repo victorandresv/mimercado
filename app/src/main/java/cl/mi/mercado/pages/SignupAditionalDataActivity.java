@@ -16,17 +16,13 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import cl.mi.mercado.R;
 import cl.mi.mercado.helpers.DialogsHelper;
-import cl.mi.mercado.helpers.FirestoreHelper;
 import cl.mi.mercado.helpers.SessionHelper;
-import cl.mi.mercado.interfaces.FirestoreSingleStore;
 import cl.mi.mercado.interfaces.SignupFirestoreCallback;
-import cl.mi.mercado.models.MarketModel;
 
 public class SignupAditionalDataActivity extends AppCompatActivity {
 

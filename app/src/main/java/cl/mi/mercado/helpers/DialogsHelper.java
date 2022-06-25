@@ -3,8 +3,6 @@ package cl.mi.mercado.helpers;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.media.MediaPlayer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -13,12 +11,12 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.android.BeepManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.journeyapps.barcodescanner.DefaultDecoderFactory;
-import com.journeyapps.barcodescanner.camera.CameraSettings;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import cl.mi.mercado.R;
+import cl.mi.mercado.interfaces.FirestoreSingleProduct;
 import cl.mi.mercado.interfaces.ProductCallback;
 import cl.mi.mercado.interfaces.SingleCallback;
 import cl.mi.mercado.models.ProductModel;
@@ -91,7 +89,7 @@ public class DialogsHelper {
         });
     }
 
-    public static void ProductCreate(Activity activity, ProductCallback call){
+    public static void ProductCreate(Activity activity, FirestoreSingleProduct call){
         LayoutInflater inflater = activity.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_product_create, null);
 
@@ -114,7 +112,7 @@ public class DialogsHelper {
                     Double.parseDouble(price_buy.getText().toString()),
                     Integer.parseInt(quantity.getText().toString())
             );
-            call.Add(product);
+            call.Ok(product);
         });
         dialogBuilder.setPositiveButton(activity.getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
         dialogBuilder.setTitle(activity.getResources().getString(R.string.create_new_product));
@@ -137,13 +135,12 @@ public class DialogsHelper {
         barcodeView.decodeContinuous(result -> {
             if(!lastStringScanned[0].equals(result.getText())){
                 barcodeView.pause();
-                beepManager.playBeepSound().setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        lastStringScanned[0] = result.getText();
-                        sku.setText(result.getText());
-                        barcodeView.resume();
-                    }
+                beepManager.playBeepSound().setOnCompletionListener(mediaPlayer -> {
+                    lastStringScanned[0] = result.getText();
+                    sku.setText(result.getText());
+                    barcodeView.resume();
+
+                    FirestoreOnlineHelper.GetProductBySku(activity.getApplicationContext(), result.getText(), call);
                 });
             }
         });

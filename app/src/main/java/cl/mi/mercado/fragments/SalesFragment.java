@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import cl.mi.mercado.R;
 import cl.mi.mercado.adapters.SaleRecyclerViewAdapter;
 import cl.mi.mercado.helpers.DialogsHelper;
-import cl.mi.mercado.helpers.FirestoreHelper;
+import cl.mi.mercado.helpers.FirestoreOnlineHelper;
 import cl.mi.mercado.helpers.SessionHelper;
 import cl.mi.mercado.interfaces.FirestoreSingleStore;
 import cl.mi.mercado.models.MarketModel;
@@ -74,7 +74,7 @@ public class SalesFragment extends Fragment {
         } else {
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             FirebaseUser currentUser = mAuth.getCurrentUser();
-            FirestoreHelper.GetStoreByEmail(currentUser.getEmail(), new FirestoreSingleStore() {
+            FirestoreOnlineHelper.GetStoreByEmail(currentUser.getEmail(), new FirestoreSingleStore() {
                 @Override
                 public void Ok(MarketModel data) {
                     if(data.getId() == null) {
